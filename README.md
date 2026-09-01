@@ -38,6 +38,57 @@ Leave room for a headline and preserve the character's face, signature accessory
 
 Use the [IP Bible template](references/ip-bible-template.md) to document a character before generating a series.
 
+## How to use an IP Bible
+
+An IP Bible is a character specification document. It records the identity features that should remain stable across every asset, as well as the elements that may change with each request. Create and confirm the IP Bible before generating a series of assets.
+
+### Create an IP Bible
+
+Prepare a three-view character reference, ideally including front, side, and three-quarter views. Then provide the images to the agent with this prompt:
+
+```text
+Based on the three-view character references I provided, help me complete an IP Bible.
+
+First analyze:
+- Overall appearance
+- Face shape, eyes, hairstyle, or fur color
+- Body proportions
+- Clothing and accessories
+- Fixed color palette
+- Distinctive identifying marks
+- Possible personality and temperament
+- Visual styles suitable for future extensions
+
+Strictly separate:
+1. Fixed features: must remain consistent in every image
+2. Variable elements: may change with the action, scene, or emotion
+3. Uncertain information: do not guess; mark it as "needs confirmation"
+
+Use the format in references/ip-bible-template.md.
+Do not generate an image yet. Let me review and confirm the IP Bible first.
+```
+
+When reviewing the result, check the face shape, clothing, colors, body proportions, signature accessories, and distinctive marks first. If a detail cannot be confirmed from the references, keep it marked as uncertain instead of inventing a new character rule.
+
+### Use the IP Bible to generate assets
+
+After confirming the IP Bible, provide these three things for each new asset:
+
+1. The confirmed IP Bible
+2. The three-view character reference or other character references
+3. The requested action, situation, scene, emotion, and dimensions
+
+```text
+Use the confirmed IP Bible and the three-view character references.
+
+Create a 1080x1080 square social post:
+The character is flying a kite at the seaside during sunset, with a happy expression.
+
+Keep every fixed identity feature consistent. Change only the action, scene, expression, and composition.
+```
+
+The IP Bible defines the character identity, the three-view references provide visual evidence, and the asset request defines the action, scene, and composition. Providing all three together gives the most reliable foundation for a consistent asset series.
+
 ## Supported assets
 
 | Asset type | Default rules |
