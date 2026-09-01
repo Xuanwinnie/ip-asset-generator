@@ -1,0 +1,26 @@
+name: Validate IP asset skill
+
+on:
+  pull_request:
+  push:
+    branches: [main]
+
+permissions:
+  contents: read
+
+jobs:
+  validate:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - name: Validate IP design system
+        run: python scripts/validate_ip_system.py
+      - name: Check JSON syntax
+        run: |
+          python -m json.tool design-system/identity-rules.json >/dev/null
+          python -m json.tool design-system/asset-types.json >/dev/null
+          python -m json.tool design-system/compositions.json >/dev/null
+          python -m json.tool evals/evals.json >/dev/null
