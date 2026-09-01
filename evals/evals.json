@@ -1,0 +1,46 @@
+{
+  "skill_name": "ip-asset-generator",
+  "schema_version": 1,
+  "evals": [
+    {
+      "id": 1,
+      "prompt": "使用我提供的角色，在雨天車站撐傘，做成行動版活動頁主視覺。",
+      "assertions": {"asset_type": "h5_cover", "dimensions": "1080x1920", "text_safe_zone_required": true, "identity_lock_required": true, "must_not": ["text over face", "identity anchor at crop edge", "extra character"]}
+    },
+    {
+      "id": 2,
+      "prompt": "讓同一個 IP 在森林裡煮早餐，做成 1080x1080 社群貼文。",
+      "assertions": {"asset_type": "social_square", "dimensions": "1080x1080", "one_primary_action": true, "must_not": ["different face", "generic mascot expression", "busy background"]}
+    },
+    {
+      "id": 3,
+      "prompt": "生成同一個角色在書店看書的透明背景素材。",
+      "assertions": {"asset_type": "transparent_character_asset", "dimensions": "1080x1080", "transparent_background": true, "must_not": ["scene background", "baked-in text", "missing signature accessory"]}
+    },
+    {
+      "id": 4,
+      "prompt": "同一個 IP 生成揮手、跑步、睡覺三個姿勢，維持相同角色比例。",
+      "assertions": {"asset_type": "transparent_character_asset", "pose_set": true, "consistent_camera_scale": true, "must_not": ["different baseline", "different art medium", "identity drift"]}
+    },
+    {
+      "id": 5,
+      "prompt": "把角色放在海邊撿貝殼，做成 1080x1350 的直式社群貼文。",
+      "assertions": {"asset_type": "social_portrait", "dimensions": "1080x1350", "recompose_for_ratio": true, "must_not": ["stretched square composition", "text over identity anchors"]}
+    },
+    {
+      "id": 6,
+      "prompt": "將角色在城市騎腳踏車的畫面做成 1200x630 連結預覽圖。",
+      "assertions": {"asset_type": "link_preview", "dimensions": "1200x630", "landscape_composition": true, "must_not": ["portrait crop squeezed into landscape", "unreadable silhouette"]}
+    },
+    {
+      "id": 7,
+      "prompt": "生成同一個角色的四季素材，只改變場景與季節小配件。",
+      "assertions": {"series": true, "identity_lock_required": true, "allowed_variation_only": ["scene", "seasonal_accessory"], "must_not": ["changed body proportions", "changed face shape", "changed species"]}
+    },
+    {
+      "id": 8,
+      "prompt": "沒有角色參考圖，只用文字描述生成 IP 素材。",
+      "assertions": {"limitation_disclosure_required": true, "must_not": ["claim exact consistency", "invent permanent features without disclosure"]}
+    }
+  ]
+}
