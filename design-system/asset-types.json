@@ -1,0 +1,65 @@
+{
+  "schema_version": 1,
+  "asset_types": [
+    {
+      "id": "h5_cover",
+      "name": "行動版活動頁主視覺",
+      "ratios": ["9:16", "3:4"],
+      "default_dimensions": "1080x1920",
+      "character_area_percent": [35, 65],
+      "text_safe_zone": "upper-third or lower-third",
+      "required_signals": ["mobile thumbnail readability", "one focal action", "clear text-safe zone"],
+      "forbidden_signals": ["text over face", "important anchor at crop edge", "overcrowded background"]
+    },
+    {
+      "id": "social_square",
+      "name": "社群方形貼文",
+      "ratios": ["1:1"],
+      "default_dimensions": "1080x1080",
+      "character_area_percent": [40, 75],
+      "text_safe_zone": "central safe area adapted to copy",
+      "required_signals": ["square composition", "clear character silhouette", "short-copy space"],
+      "forbidden_signals": ["edge-dependent identity anchor", "tiny unreadable character"]
+    },
+    {
+      "id": "social_portrait",
+      "name": "社群直式貼文",
+      "ratios": ["4:5"],
+      "default_dimensions": "1080x1350",
+      "character_area_percent": [40, 75],
+      "text_safe_zone": "upper or lower third",
+      "required_signals": ["vertical feed readability", "crop-safe identity", "clear hierarchy"],
+      "forbidden_signals": ["unrecomposed square layout", "text over identity anchors"]
+    },
+    {
+      "id": "story_cover",
+      "name": "限時動態／短影音封面",
+      "ratios": ["9:16"],
+      "default_dimensions": "1080x1920",
+      "character_area_percent": [35, 65],
+      "text_safe_zone": "central safe area",
+      "required_signals": ["mobile thumbnail readability", "central crop safety", "one clear action"],
+      "forbidden_signals": ["critical detail in top or bottom UI zones", "busy edge treatment"]
+    },
+    {
+      "id": "link_preview",
+      "name": "連結預覽圖",
+      "ratios": ["1.91:1"],
+      "default_dimensions": "1200x630",
+      "character_area_percent": [35, 65],
+      "text_safe_zone": "central horizontal band",
+      "required_signals": ["landscape readability", "strong silhouette", "short headline space"],
+      "forbidden_signals": ["portrait composition squeezed into landscape", "identity anchor cropped"]
+    },
+    {
+      "id": "transparent_character_asset",
+      "name": "透明角色素材",
+      "ratios": ["1:1", "4:5"],
+      "default_dimensions": "1080x1080",
+      "character_area_percent": [70, 90],
+      "text_safe_zone": "none",
+      "required_signals": ["transparent background", "clean silhouette", "visible signature accessories"],
+      "forbidden_signals": ["complex background", "baked-in text", "cropped reusable silhouette"]
+    }
+  ]
+}
