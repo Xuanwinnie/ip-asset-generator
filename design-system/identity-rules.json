@@ -1,0 +1,44 @@
+{
+  "schema_version": 1,
+  "identity_anchor_policy": {
+    "minimum_anchors_per_asset": 3,
+    "preferred_anchor_count": [4, 6],
+    "critical_anchor_count": 2,
+    "preserve_in_relationship": true
+  },
+  "invariants": [
+    "species_or_role",
+    "face_shape",
+    "body_proportions",
+    "age_impression",
+    "signature_colors",
+    "permanent_markings",
+    "signature_accessories",
+    "visual_language"
+  ],
+  "allowed_variations": [
+    "primary_action",
+    "primary_emotion",
+    "scene",
+    "functional_props",
+    "camera_angle",
+    "seasonal_accessory",
+    "background_density",
+    "asset_ratio"
+  ],
+  "variation_budget": {
+    "primary_action": 1,
+    "primary_emotion": 1,
+    "scene": 1,
+    "camera_or_composition_change": 1,
+    "functional_props": [1, 2],
+    "seasonal_or_situational_costume_changes": [0, 1],
+    "identity_changes": 0
+  },
+  "failure_thresholds": {
+    "minimum_anchors_visible": 3,
+    "maximum_retry_count": 1,
+    "text_may_cover_identity_anchor": false,
+    "extra_character_without_request": false
+  }
+}
