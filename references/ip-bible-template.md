@@ -4,6 +4,8 @@ Use this template when documenting a character before generating a series of ass
 
 ```yaml
 character_id: <name>
+reference_confidence: high | medium | low | none
+reference_sources: [<reference image or document>]
 species_or_role: <species, object, person, or mascot role>
 personality: [<trait>, <trait>]
 
@@ -11,6 +13,7 @@ identity_anchors:
   - id: <anchor>
     description: <visible feature>
     priority: critical
+    confidence: confirmed | needs_confirmation
 
 fixed_rules:
   - <feature that must never change>
@@ -37,9 +40,12 @@ asset_defaults:
   transparent_character_asset:
     ratio: 1:1
     background: transparent
-  social_card:
+  social_square:
     ratio: 1:1
-    text_safe_zone: upper-left
+    text_safe_zone: central-safe-area
+  social_portrait:
+    ratio: 4:5
+    text_safe_zone: upper-or-lower-third
 ```
 
 ## Reference sheet checklist

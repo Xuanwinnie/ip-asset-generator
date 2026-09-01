@@ -8,7 +8,7 @@ It keeps the same character recognizable across different actions, scenes, and f
 
 ## What it does
 
-Generate mobile campaign-page main visuals, social graphics, story illustrations, stickers, transparent character assets, and pose sets.
+Generate mobile campaign-page main visuals, square and portrait social graphics, story covers, link previews, stickers, transparent character assets, and pose sets.
 
 This is a public, reusable Skill. It does not include a private character. Each user supplies their own character reference images, description, or IP Bible.
 
@@ -37,6 +37,10 @@ Leave room for a headline and preserve the character's face, signature accessory
 ```
 
 Use the [IP Bible template](references/ip-bible-template.md) to document a character before generating a series.
+
+An IP folder is optional. You may provide a single image, multiple references, a character sheet, a confirmed IP Bible, or a folder containing an IP Bible and reference images. When a folder is supplied, the Skill reads the existing files without requiring a specific folder layout.
+
+For a recommended folder structure and naming convention, see [IP folder structure](references/ip-folder-structure.md). The convention is optional; existing files are inspected by content rather than trusted by filename alone.
 
 ## How to use an IP Bible
 
@@ -116,8 +120,10 @@ Apply dimensions and composition rules
         ↓
 Compile a production prompt
         ↓
-Generate and inspect identity consistency
+        Generate and inspect identity consistency
 ```
+
+For each request, normalize the plan with [the Recipe Manifest](references/recipe-manifest.md), then record generation checks with [the QA checklist](references/qa-checklist.md). Text-only references are `none` confidence and must include a limitation disclosure.
 
 ## Character consistency
 

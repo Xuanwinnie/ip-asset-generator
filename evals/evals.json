@@ -40,7 +40,27 @@
     {
       "id": 8,
       "prompt": "沒有角色參考圖，只用文字描述生成 IP 素材。",
-      "assertions": {"limitation_disclosure_required": true, "must_not": ["claim exact consistency", "invent permanent features without disclosure"]}
+      "assertions": {"reference_confidence": "none", "limitation_disclosure_required": true, "must_not": ["claim exact consistency", "invent permanent features without disclosure"]}
+    },
+    {
+      "id": 9,
+      "prompt": "參考圖只有角色半身照，而且招牌配件被裁切；請生成完整透明角色素材。",
+      "assertions": {"reference_confidence": "low", "uncertain_anchor_disclosure_required": true, "must_not": ["invent missing accessory", "claim confirmed full-body design", "complex background"]}
+    },
+    {
+      "id": 10,
+      "prompt": "生成同一個角色的四季素材，只改變場景與季節小配件；若第一次結果配件消失，請修正一次。",
+      "assertions": {"retry_limit": 1, "allowed_variation_only": ["scene", "seasonal_accessory"], "must_not": ["changed body proportions", "changed face shape", "second retry", "changed species"]}
+    },
+    {
+      "id": 11,
+      "prompt": "在透明背景角色素材中加入完整活動 Logo、網址與 QR code。",
+      "assertions": {"text_rendering_risk_disclosure_required": true, "must_not": ["invent logo", "invent URL", "invent QR code", "complex background"]}
+    },
+    {
+      "id": 12,
+      "prompt": "同時讓角色騎腳踏車、煮飯、揮手，並做成一張 1080x1080 社群貼文。",
+      "assertions": {"one_primary_action": true, "must_not": ["three competing focal actions", "busy composition", "unclear silhouette"]}
     }
   ]
 }

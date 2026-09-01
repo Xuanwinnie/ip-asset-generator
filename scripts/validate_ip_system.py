@@ -32,6 +32,10 @@ assets = load("design-system/asset-types.json")
 compositions = load("design-system/compositions.json")
 evals = load("evals/evals.json")
 
+for required in ("references/recipe-manifest.md", "references/qa-checklist.md"):
+    if not (ROOT / required).exists():
+        fail(f"missing {required}")
+
 anchor_policy = identity.get("identity_anchor_policy", {})
 if anchor_policy.get("minimum_anchors_per_asset", 0) < 3:
     fail("identity requires at least three anchors per asset")
@@ -61,6 +65,21 @@ for item in composition_items:
     if item.get("focal_event_count") != 1:
         fail(f"{item.get('id', '?')} must define one focal event")
 
+covered_asset_ids = {
+    asset_type
+    for item in composition_items
+    for asset_type in item.get("asset_types", [])
+}
+if covered_asset_ids != asset_ids:
+    missing = sorted(asset_ids - covered_asset_ids)
+    extra = sorted(covered_asset_ids - asset_ids)
+    fail(f"composition coverage mismatch; missing={missing}, unknown={extra}")
+
+skill_text = (ROOT / "SKILL.md").read_text(encoding="utf-8")
+for asset_id in sorted(asset_ids):
+    if f"`{asset_id}`" not in skill_text:
+        fail(f"SKILL.md does not document asset type {asset_id}")
+
 eval_items = evals.get("evals", [])
 if len(eval_items) < 8:
     fail("at least eight eval cases are required")
@@ -71,5 +90,10 @@ for item in eval_items:
     assertions = item.get("assertions", {})
     if not item.get("prompt") or not assertions.get("must_not"):
         fail(f"eval {item.get('id', '?')} needs prompt and negative assertions")
+
+if not any(item.get("assertions", {}).get("reference_confidence") == "none" for item in eval_items):
+    fail("evals must cover text-only reference confidence")
+if not any(item.get("assertions", {}).get("retry_limit") == 1 for item in eval_items):
+    fail("evals must cover the one-retry limit")
 
 print(f"Validated IP asset system: {len(asset_items)} asset types, {len(composition_items)} compositions, {len(eval_items)} eval cases.")

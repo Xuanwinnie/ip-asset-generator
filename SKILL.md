@@ -7,12 +7,22 @@ description: Generate consistent visual assets for a supplied IP character acros
 
 Create a new visual asset while preserving the identity of the supplied IP. The character may change action, expression, scene, prop, camera angle, season, and asset format, but its recognizable identity and visual language must remain stable.
 
-## Required inputs
+## Input resolution
 
-Use the supplied character sheet, reference image, or existing IP description when available. Extract and internally resolve:
+Use whichever character inputs the user provides. A dedicated IP folder is optional, but when supplied, inspect its structured files and reference images together. Supported input forms include:
+
+- a direct character image or image set;
+- an IP folder containing `ip_bible.yaml` or `ip_bible.yml` plus a `references/` directory;
+- a character sheet or multi-view reference;
+- a confirmed IP Bible or character description;
+- a text-only description when no visual reference exists.
+
+When a folder is supplied, read the IP Bible first, then inspect relevant files under `references/`; use [ip-folder-structure.md](references/ip-folder-structure.md) for the recommended organization and naming conventions. Do not modify, rename, or require the user to reorganize the source folder. Ignore system files such as `.DS_Store`. Treat filenames as hints only and use the image content to determine the view; if a view cannot be determined, mark it uncertain.
+
+Resolve the available inputs into a Recipe Manifest. The following fields are required in the manifest when applicable; unavailable fields must be marked as unknown or `none`, not invented:
 
 - `character_id`: the IP or character name;
-- `identity_anchors`: 3-8 recognizable features, ranked by importance;
+- `identity_anchors`: 3-8 highest-priority recognizable features, ranked by importance;
 - `fixed_rules`: features that must not change;
 - `allowed_variations`: features that may change for the requested asset;
 - `action`: one primary action;
@@ -25,13 +35,17 @@ Use the supplied character sheet, reference image, or existing IP description wh
 
 If no usable character reference exists, use the user's description but state that exact character consistency is limited. Do not invent permanent character features that were not provided.
 
-Use the machine-readable catalogs in `design-system/` as the source of truth for identity locks, asset dimensions, composition, and variation budgets. Read only the catalog relevant to the current decision. For a reusable IP reference structure, read [ip-bible-template.md](references/ip-bible-template.md) when the user is defining or documenting the character system.
+Set reference confidence in the Recipe Manifest: `high` for a confirmed IP Bible with a useful multi-view pack, `medium` for a usable but incomplete reference, `low` for weak or ambiguous references, and `none` for text-only input. The quality of the input changes the confidence disclosure, not the identity rules.
+
+Use the machine-readable catalogs in `design-system/` as the source of truth for identity locks, asset dimensions, composition, and variation budgets. Read only the catalog relevant to the current decision. Build the normalized request using [recipe-manifest.md](references/recipe-manifest.md); use [qa-checklist.md](references/qa-checklist.md) after generation. For a reusable IP reference structure, read [ip-bible-template.md](references/ip-bible-template.md) when the user is defining or documenting the character system.
+
+Follow this workflow: resolve inputs → build and check the Recipe Manifest → select the catalog asset type and composition → compile the production prompt → generate → inspect and record QA → deliver or retry once. If the user asks to create or revise an IP Bible, stop after the IP Bible draft and wait for confirmation before generating formal assets.
 
 ## Identity lock
 
 Before composing the generation prompt, lock the following:
 
-1. Preserve all critical identity anchors and at least three anchors in every image. In a distant or small composition, preserve the strongest silhouette, face, color, or accessory anchors that remain visible.
+1. Preserve the strongest applicable identity anchors and show at least three visible anchors in every image when the composition allows. The manifest's 3-8 anchors are a prioritized subset; `fixed_rules` may contain additional permanent details. Do not claim that an anchor was verified when it is hidden, cropped, or not supported by the reference.
 2. Keep species, face shape, body proportions, signature colors, permanent markings, and signature accessories unchanged.
 3. Permit only the variations explicitly requested or listed as allowed variations.
 4. When a reference image is supplied, preserve identity and recognizable factual features; change only the requested action, setting, crop, or treatment.
@@ -43,9 +57,9 @@ Choose the first matching asset type in this order unless the user explicitly sp
 
 1. `transparent_character_asset`: isolated character, sticker, pose, expression, or reusable material;
 2. `h5_cover`: mobile campaign page or landing-page main visual;
-3. `social_card`: square or feed graphic;
-4. `story_illustration`: character performing an action in a readable environment;
-5. `scene_key_visual`: larger campaign or editorial visual.
+3. `social_square` or `social_portrait`: square or feed graphic;
+4. `story_cover`: character performing an action in a readable environment;
+5. `link_preview`: landscape campaign or editorial share visual.
 
 Do not use the mobile campaign-page layout for an isolated asset, and do not add a complex background to a transparent asset.
 
@@ -67,7 +81,7 @@ Do not use the mobile campaign-page layout for an isolated asset, and do not add
 - Do not include scene elements, logos, decorative text, or accidental extra characters.
 - For a pose set, keep camera distance, character scale, line quality, and baseline consistent across the set.
 
-### Social card
+### Social square and portrait
 
 - Choose the exact delivery size from the requested platform when known.
 - Use `1080x1080` for square posts, `1080x1350` for vertical feed posts, and `1080x1920` for stories or short-form vertical content.
@@ -75,7 +89,12 @@ Do not use the mobile campaign-page layout for an isolated asset, and do not add
 - Keep important identity anchors, headlines, and logos inside a central safe area so platform cropping does not remove them.
 - Do not stretch one composition across every ratio. Recompose the character position and text-safe zone for each size while preserving the identity lock.
 
-### Scene illustration
+### Story cover and link preview
+
+- Use `story_cover` for a readable character-in-scene cover and keep critical details away from top and bottom interface zones.
+- Use `link_preview` for a landscape composition with a strong silhouette and a central horizontal text band.
+
+### Scene content
 
 - Use one primary action, one emotional beat, and one concrete scene.
 - Let the environment support the action instead of competing with the character.
@@ -97,7 +116,7 @@ Never vary identity anchors, character species, age impression, body proportions
 
 ## Visual language
 
-Extract the IP's existing visual language from the reference material. If it is unspecified, choose a restrained default and keep it fixed across the run:
+Extract the IP's existing visual language from the reference material. If it is unspecified, use a restrained temporary default and keep it fixed across the run until the user confirms a style:
 
 - one line treatment;
 - one shading method;
@@ -107,6 +126,8 @@ Extract the IP's existing visual language from the reference material. If it is 
 - one background density level per asset type.
 
 Do not turn a 2D IP into glossy 3D, photorealism, a different illustration medium, or a new branding style unless requested. Match the reference's level of simplification and visual weight.
+
+Treat source character references as identity evidence. Treat files in an `approved-assets` or examples directory as quality and visual-treatment examples only; they must not override confirmed identity rules in the IP Bible.
 
 ## Prompt compiler
 
@@ -136,9 +157,13 @@ Always exclude the following unless explicitly requested:
 - glossy 3D rendering, photorealistic anatomy, or unrelated art styles;
 - invented logos, sponsors, URLs, QR codes, or factual event information.
 
+## Reference confidence
+
+Assign `high`, `medium`, `low`, or `none` confidence in the Recipe Manifest. A text-only request has `none` confidence: do not invent permanent features or claim exact consistency. Mark ambiguous anchors as `needs_confirmation` and disclose that limitation.
+
 ## Inspection and retry
 
-Inspect the result at full size and at the intended delivery size. Regenerate once if any of these fail:
+Inspect the result at full size and at the intended delivery size, and record the result using [qa-checklist.md](references/qa-checklist.md). Regenerate at most once, adjusting only the failed requirement, if any of these fail:
 
 - three or more critical identity anchors are missing or visibly changed;
 - the primary action is unclear;
@@ -157,4 +182,5 @@ Return:
 1. the generated raster image when image-generation capability is available;
 2. the exact production prompt;
 3. a short recipe naming the character anchors, action, scene, asset type, ratio, and visual treatment;
-4. any limitation affecting identity consistency, transparency, or text rendering.
+4. the QA result, including visible anchor count and any failed or uncertain checks;
+5. any limitation affecting identity consistency, transparency, or text rendering.
