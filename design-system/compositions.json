@@ -1,0 +1,41 @@
+{
+  "schema_version": 1,
+  "compositions": [
+    {
+      "id": "h5_focal_lower",
+      "asset_types": ["h5_cover", "story_cover"],
+      "character_position": "lower-third",
+      "text_zone": "upper-third",
+      "focal_event_count": 1,
+      "background_density": "medium",
+      "crop_rule": "keep identity anchors inside the safe area"
+    },
+    {
+      "id": "social_balanced",
+      "asset_types": ["social_square", "social_portrait"],
+      "character_position": "off-center with one quiet release zone",
+      "text_zone": "opposite the primary action",
+      "focal_event_count": 1,
+      "background_density": "low-to-medium",
+      "crop_rule": "recompose for the target ratio"
+    },
+    {
+      "id": "landscape_split",
+      "asset_types": ["link_preview"],
+      "character_position": "one side of the horizontal frame",
+      "text_zone": "central horizontal band",
+      "focal_event_count": 1,
+      "background_density": "low",
+      "crop_rule": "preserve a readable silhouette"
+    },
+    {
+      "id": "isolated_pose",
+      "asset_types": ["transparent_character_asset"],
+      "character_position": "centered with full silhouette",
+      "text_zone": "none",
+      "focal_event_count": 1,
+      "background_density": "none",
+      "crop_rule": "keep hands, feet, tail, ears, and signature accessories visible"
+    }
+  ]
+}
