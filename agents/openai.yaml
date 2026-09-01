@@ -1,0 +1,4 @@
+interface:
+  display_name: "IP 素材生成器"
+  short_description: "維持固定 IP 角色並生成不同場景素材"
+  default_prompt: "使用 $ip-asset-generator，維持我的 IP 角色一致，生成指定動作、場景與素材格式。"
