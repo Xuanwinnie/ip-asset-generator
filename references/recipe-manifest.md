@@ -41,6 +41,9 @@ visual_language:
   shading: <reference-derived treatment>
   palette: []
   texture: <reference-derived treatment>
+surface_quality:
+  broad_surfaces: clean | natural_texture | intentional_pattern | unknown
+  avoid_artifacts: []
 hard_avoids: []
 ```
 

@@ -125,6 +125,8 @@ Extract the IP's existing visual language from the reference material. If it is 
 - one expression vocabulary;
 - one background density level per asset type.
 
+For broad surfaces such as skin, fabric, walls, sky, or other smooth materials, prefer clean and naturally varied surfaces with gradual lighting transitions. Use concrete material and lighting language instead of stacking abstract quality terms such as `8K`, `hyper-detailed`, `micro texture`, or `sharp focus`; these terms are optional and should not be used when they add no meaningful visual requirement.
+
 Do not turn a 2D IP into glossy 3D, photorealism, a different illustration medium, or a new branding style unless requested. Match the reference's level of simplification and visual weight.
 
 Treat source character references as identity evidence. Treat files in an `approved-assets` or examples directory as quality and visual-treatment examples only; they must not override confirmed identity rules in the IP Bible.
@@ -137,7 +139,7 @@ Compile the final image prompt in this order:
 2. **Action and emotion:** one clear action and one emotional beat.
 3. **Scene and props:** one concrete environment and only functional props.
 4. **Asset composition:** ratio, character position, crop, focal action, safe zone, transparency, and output purpose.
-5. **Visual language and exclusions:** line, color, texture, lighting, and hard avoids.
+5. **Visual language and exclusions:** line, color, texture, lighting, clean-surface requirements where relevant, and hard avoids.
 
 Use exact user-supplied text without translating it. If text is uncertain, reserve a safe area rather than inventing branding, campaign facts, URLs, or logos.
 
@@ -154,6 +156,7 @@ Always exclude the following unless explicitly requested:
 - cropped hands, feet, ears, tail, or other anchors when a reusable asset is requested;
 - complex backgrounds in transparent assets;
 - inconsistent camera scale or baseline within a pose set;
+- repetitive scales, honeycomb/cellular patterns, procedural-looking grain, or unwanted micro-texture on broad surfaces;
 - glossy 3D rendering, photorealistic anatomy, or unrelated art styles;
 - invented logos, sponsors, URLs, QR codes, or factual event information.
 
@@ -171,6 +174,7 @@ Inspect the result at full size and at the intended delivery size, and record th
 - a mobile campaign-page main visual lacks a usable text-safe zone;
 - a reusable asset has an accidental background, crop, or extra character;
 - the character's visual language has drifted from the reference;
+- broad surfaces contain obvious repetitive patterns, artificial grain, or plastic-looking texture;
 - the composition is too busy to read at thumbnail size.
 
 If the result remains inconsistent after one retry, explain the limitation and recommend a stronger character sheet or reference-driven generation. Do not claim identity consistency that the output does not demonstrate.
