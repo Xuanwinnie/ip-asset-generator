@@ -230,7 +230,9 @@ Skill 可以透過身份錨點、參考圖和檢查規則提高穩定性，但�
 
 三張 Momo 日語學習情境圖片：街頭導航、咖啡廳草莓蛋糕、公園飯糰野餐。查看[完整生成結果與可數特徵觀察](examples/momo-japanese-learning/README.md)。
 
-![Momo cafe example](examples/momo-japanese-learning/momo-cafe-strawberry-cake.png)
+| 街頭導航 | 咖啡廳草莓蛋糕 | 公園飯糰野餐 |
+| --- | --- | --- |
+| ![街頭導航](examples/momo-japanese-learning/momo-street-navigation.png) | ![咖啡廳草莓蛋糕](examples/momo-japanese-learning/momo-cafe-strawberry-cake.png) | ![公園飯糰野餐](examples/momo-japanese-learning/momo-park-onigiri-picnic.png) |
 
 ## License
 
