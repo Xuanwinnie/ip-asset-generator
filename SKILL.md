@@ -51,6 +51,13 @@ Before composing the generation prompt, lock the following:
 4. When a reference image is supplied, preserve identity and recognizable factual features; change only the requested action, setting, crop, or treatment.
 5. Do not solve inconsistency by adding extra accessories, changing the costume design, or making the character more generic.
 
+### 可數特徵確認
+
+- 生成前實際查看參考圖，逐項確認腳趾、羽冠瓣數、尾羽瓣數及其他可數的固定特徵；左右部位分別記錄，不能只記總數。
+- 建立本次生成的核對清單：特徵、每側／每部位的確切數量、形狀與朝向、依據（參考圖或已確認的角色設定）、本次構圖是否必須完整可見。
+- 使用者明確修正的構造優先於舊圖。看不清、被遮擋或設定仍待確認的數量，不可猜測；先查其他可用參考圖，仍無法判定且本次畫面需要呈現時，請使用者補充確認。
+- 把已確認的數量視為固定身份規則；不可因姿勢、透視或造型簡化而增減、合併。合理遮擋不等於構造改變，但不可把不可見部位宣稱為已驗證，也不可用遮擋迴避明確可見要求。
+
 ## Asset routing
 
 Choose the first matching asset type in this order unless the user explicitly specifies another:
@@ -135,11 +142,13 @@ Treat source character references as identity evidence. Treat files in an `appro
 
 Compile the final image prompt in this order:
 
-1. **Identity lock:** character name, reference usage, critical anchors, fixed features, and consistency requirement.
+1. **Identity lock:** character name, reference usage, critical anchors, fixed features, and consistency requirement. 將核對清單中已確認的可數特徵逐項寫出確切數量、每側／每部位單位、形狀、朝向與必要的可見性，不能只寫「符合參考圖」。
 2. **Action and emotion:** one clear action and one emotional beat.
 3. **Scene and props:** one concrete environment and only functional props.
 4. **Asset composition:** ratio, character position, crop, focal action, safe zone, transparency, and output purpose.
 5. **Visual language and exclusions:** line, color, texture, lighting, clean-surface requirements where relevant, and hard avoids.
+
+例如，若角色設定確認每隻腳三趾，提示詞應寫「每隻腳恰好三根短圓、朝前的腳趾；坐姿腳掌朝向鏡頭時，左腳三趾與右腳三趾都清楚分開可辨，不得缺趾、多趾或合併成兩趾」。其他角色須使用各自已確認的數量，不套用此範例；羽冠等特徵同樣逐項寫入。
 
 Use exact user-supplied text without translating it. If text is uncertain, reserve a safe area rather than inventing branding, campaign facts, URLs, or logos.
 
@@ -149,6 +158,7 @@ Always exclude the following unless explicitly requested:
 
 - identity drift, redesigned face, changed species, or changed body proportions;
 - missing or duplicated signature accessories;
+- 可數固定特徵的數量錯誤、缺失、重複或合併，以及未符合要求的可見性；
 - extra permanent markings;
 - generic mascot expressions that erase the IP personality;
 - extra characters or branded objects not supplied by the user;
@@ -166,9 +176,12 @@ Assign `high`, `medium`, `low`, or `none` confidence in the Recipe Manifest. A t
 
 ## Inspection and retry
 
-Inspect the result at full size and at the intended delivery size, and record the result using [qa-checklist.md](references/qa-checklist.md). Regenerate at most once, adjusting only the failed requirement, if any of these fail:
+Inspect the result at full size and at the intended delivery size, and record the result using [qa-checklist.md](references/qa-checklist.md). 依生成前的核對清單，逐張、逐部位檢查成圖；放大查看左右腳趾、羽冠、尾羽等，分別記錄「預期數量／實際可辨數量／通過、失敗或無法確認」。不可只憑整體像不像判斷。坐姿腳掌朝向鏡頭且設定每腳三趾時，須分別確認左腳三趾、右腳三趾均清楚可辨；兩趾加模糊隆起不能算通過。合理遮擋的項目記為無法確認；要求完整可見卻無法辨識則判定失敗。
 
-- three or more critical identity anchors are missing or visibly changed;
+Regenerate at most once, adjusting only the failed requirement, if any of these fail:
+
+- any critical identity anchor or fixed rule is visibly violated;
+- 任一已確認的可數特徵數量錯誤、合併，或未達必要的可見性；
 - the primary action is unclear;
 - the requested asset ratio or transparency is wrong;
 - a mobile campaign-page main visual lacks a usable text-safe zone;
@@ -176,6 +189,8 @@ Inspect the result at full size and at the intended delivery size, and record th
 - the character's visual language has drifted from the reference;
 - broad surfaces contain obvious repetitive patterns, artificial grain, or plastic-looking texture;
 - the composition is too busy to read at thumbnail size.
+
+重試提示詞須指出出錯部位、預期數量與可見性，並在重試後重新逐項驗收。
 
 If the result remains inconsistent after one retry, explain the limitation and recommend a stronger character sheet or reference-driven generation. Do not claim identity consistency that the output does not demonstrate.
 
@@ -186,5 +201,5 @@ Return:
 1. the generated raster image when image-generation capability is available;
 2. the exact production prompt;
 3. a short recipe naming the character anchors, action, scene, asset type, ratio, and visual treatment;
-4. the QA result, including visible anchor count and any failed or uncertain checks;
+4. the QA result, including visible anchor count, per-feature count verification, and any failed or uncertain checks;
 5. any limitation affecting identity consistency, transparency, or text rendering.

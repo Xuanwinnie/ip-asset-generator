@@ -10,7 +10,7 @@ It keeps the same character recognizable across different actions, scenes, and f
 
 Generate mobile campaign-page main visuals, square and portrait social graphics, story covers, link previews, stickers, transparent character assets, and pose sets.
 
-This is a public, reusable Skill. It does not include a private character. Each user supplies their own character reference images, description, or IP Bible.
+This is a public, reusable Skill. It is not tied to a predefined character; user-supplied generated examples are included below. Each user supplies their own character reference images, description, or IP Bible.
 
 ## Quick start
 
@@ -156,6 +156,12 @@ ip-asset-generator/
 Reference images, identity anchors, and inspection rules improve consistency, but no image model guarantees pixel-identical faces or details across every generation.
 
 If identity drift continues, strengthen the character sheet and multi-angle references instead of adding unlimited prompt adjectives.
+
+## Generated examples
+
+Three user-supplied Momo scenes: street navigation, strawberry cake at a cafe, and an onigiri picnic. See the [image gallery and countable-feature observations](examples/momo-japanese-learning/README.md). These are visual examples, not canonical character references.
+
+![Momo cafe example](examples/momo-japanese-learning/momo-cafe-strawberry-cake.png)
 
 ## License
 

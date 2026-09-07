@@ -6,7 +6,7 @@
 
 它適合生成行動版活動頁主視覺、社群圖片、故事封面、連結預覽圖、貼圖、透明背景角色素材與姿勢組合。Skill 會把角色身份鎖定，把動作、表情、場景、道具和素材格式作為可控變數，最後編譯成適合影像生成模型的完整 prompt。
 
-這是一個提供給所有人使用的通用 Skill，不包含特定角色。每位使用者都可以提供自己的 IP 角色圖、角色描述或 IP Bible，生成屬於自己的系列素材。
+這是一個提供給所有人使用的通用 Skill，不預設綁定特定角色；下方另附使用者提供的生成示例。每位使用者都可以提供自己的 IP 角色圖、角色描述或 IP Bible，生成屬於自己的系列素材。
 
 ## 快速開始
 
@@ -225,6 +225,12 @@ ip-asset-generator/
 Skill 可以透過身份錨點、參考圖和檢查規則提高穩定性，但無法保證不同影像模型產生完全相同的臉部像素或細節。
 
 如果生成結果仍出現身份漂移，優先補強 character sheet、永久特徵說明與多角度參考圖，而不是無限制增加 prompt 形容詞。
+
+## 生成結果展示
+
+三張 Momo 日語學習情境圖片：街頭導航、咖啡廳草莓蛋糕、公園飯糰野餐。查看[完整生成結果與可數特徵觀察](examples/momo-japanese-learning/README.md)。
+
+![Momo cafe example](examples/momo-japanese-learning/momo-cafe-strawberry-cake.png)
 
 ## License
 

@@ -14,6 +14,15 @@ identity_anchors:
     priority: critical | high | supporting
     confidence: confirmed | needs_confirmation
 
+countable_features:
+  - feature: <特徵與左右部位>
+    expected_count: <已確認數量或 unknown>
+    unit: <每隻腳、整個羽冠等計數單位>
+    shape_and_direction: <形狀與朝向>
+    evidence: <參考圖或使用者確認的設定>
+    visibility_required: true
+    confidence: confirmed | needs_confirmation
+
 fixed_rules:
   - <must remain unchanged>
 allowed_variations:
