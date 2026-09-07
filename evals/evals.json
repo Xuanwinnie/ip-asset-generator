@@ -61,6 +61,22 @@
       "id": 12,
       "prompt": "同時讓角色騎腳踏車、煮飯、揮手，並做成一張 1080x1080 社群貼文。",
       "assertions": {"one_primary_action": true, "must_not": ["three competing focal actions", "busy composition", "unclear silhouette"]}
+    },
+    {
+      "id": 13,
+      "prompt": "角色腳趾已局部修好，但修後版本出現濁色、鱗狀表面與拉長的腿；原始三視圖與未修場景仍可用。請完成同一張素材。",
+      "assertions": {
+        "local_edit_limit": 1,
+        "regeneration_limit": 1,
+        "original_reference_required": true,
+        "full_image_qa_required": true,
+        "must_not": [
+          "use degraded edit as next base",
+          "claim success from toe correction alone",
+          "keep retrying after regeneration fails",
+          "claim session is the proven cause"
+        ]
+      }
     }
   ]
 }

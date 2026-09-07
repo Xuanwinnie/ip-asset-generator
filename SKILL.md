@@ -39,7 +39,7 @@ Set reference confidence in the Recipe Manifest: `high` for a confirmed IP Bible
 
 Use the machine-readable catalogs in `design-system/` as the source of truth for identity locks, asset dimensions, composition, and variation budgets. Read only the catalog relevant to the current decision. Build the normalized request using [recipe-manifest.md](references/recipe-manifest.md); use [qa-checklist.md](references/qa-checklist.md) after generation. For a reusable IP reference structure, read [ip-bible-template.md](references/ip-bible-template.md) when the user is defining or documenting the character system.
 
-Follow this workflow: resolve inputs → build and check the Recipe Manifest → select the catalog asset type and composition → compile the production prompt → generate → inspect and record QA → deliver or retry once. If the user asks to create or revise an IP Bible, stop after the IP Bible draft and wait for confirmation before generating formal assets.
+Follow this workflow: resolve inputs → build and check the Recipe Manifest → select the catalog asset type and composition → compile the production prompt → generate → inspect and record QA → deliver or retry within the limits below. If the user asks to create or revise an IP Bible, stop after the IP Bible draft and wait for confirmation before generating formal assets.
 
 ## Identity lock
 
@@ -174,11 +174,22 @@ Always exclude the following unless explicitly requested:
 
 Assign `high`, `medium`, `low`, or `none` confidence in the Recipe Manifest. A text-only request has `none` confidence: do not invent permanent features or claim exact consistency. Mark ambiguous anchors as `needs_confirmation` and disclose that limitation.
 
+## 修圖來源與品質回退
+
+- 每張素材區分並記錄：原始角色參考、未經局部修圖的場景初稿、通過整體驗收的版本、目前修正目標。保留原檔，不覆寫；最新版本不等於最佳底圖。
+- 原始角色參考始終是身份、基礎色與表面材質的依據。局部編輯時明確標示哪張是編輯目標、哪張是角色參考；新場景各自從原始參考生成，不把上一張場景當成唯一身份來源。
+- 修正前先整理目前所有已知問題與必須保留的特徵，選擇局部編輯或重新生成。只有問題局限在小範圍、且整體畫質與角色身份已通過時，才使用局部編輯。
+- 若局部修正新增比例錯誤、色偏、濁化、鱗狀／碎片狀表面、線條或材質漂移，將該版標為失敗，禁止把它當成下一次修圖底圖。回到原始角色參考，彙整已知修正要求重新生成；必要時以通過驗收的場景版本輔助構圖，不能取代身份參考。
+- 同一批修正預設最多一次局部編輯及一次從原始參考重新生成；若直接重生則重試一次。重生後仍不符合要求，明確交代未解決項目，不自動追加生成。使用者提出新的修正可另行處理，但仍須挑選乾淨底圖，不能延續失敗版本。
+- 更換 session 不是畫質修復步驟。依實際成圖與來源版本判斷，不把劣化原因斷言為 session 或模型內部機制。
+
 ## Inspection and retry
 
 Inspect the result at full size and at the intended delivery size, and record the result using [qa-checklist.md](references/qa-checklist.md). 依生成前的核對清單，逐張、逐部位檢查成圖；放大查看左右腳趾、羽冠、尾羽等，分別記錄「預期數量／實際可辨數量／通過、失敗或無法確認」。不可只憑整體像不像判斷。坐姿腳掌朝向鏡頭且設定每腳三趾時，須分別確認左腳三趾、右腳三趾均清楚可辨；兩趾加模糊隆起不能算通過。合理遮擋的項目記為無法確認；要求完整可見卻無法辨識則判定失敗。
 
-Regenerate at most once, adjusting only the failed requirement, if any of these fail:
+每次生成與局部修正後都重新檢查整張圖，並與原始角色參考及同系列已通過的圖片比較：臉型、比例、配件、基礎色、材質、動作、文字、留白與畫面清晰度。不可因局部問題修好就忽略其他退化。夜景可有合理的環境光變化，但仍須保留角色基礎色的辨識度與原有表面質感；對原本光滑的角色，鱗片、重複斑塊、碎面或污濁紋理均判定失敗。
+
+若以下任一項失敗，依「修圖來源與品質回退」選擇修正方式並遵守重試上限：
 
 - any critical identity anchor or fixed rule is visibly violated;
 - 任一已確認的可數特徵數量錯誤、合併，或未達必要的可見性；
@@ -192,7 +203,7 @@ Regenerate at most once, adjusting only the failed requirement, if any of these 
 
 重試提示詞須指出出錯部位、預期數量與可見性，並在重試後重新逐項驗收。
 
-If the result remains inconsistent after one retry, explain the limitation and recommend a stronger character sheet or reference-driven generation. Do not claim identity consistency that the output does not demonstrate.
+若達重試上限仍未通過，明確說明限制與尚未通過的項目；只在參考不足時建議補強角色參考。不得把失敗版本當成完整成功交付，也不得宣稱成圖未能證明的一致性。
 
 ## Delivery
 
