@@ -161,9 +161,13 @@ If identity drift continues, strengthen the character sheet and multi-angle refe
 
 Three user-supplied Momo scenes: street navigation, strawberry cake at a cafe, and an onigiri picnic. See the [image gallery and countable-feature observations](examples/momo-japanese-learning/README.md). These are visual examples, not canonical character references.
 
-| Street navigation | Strawberry cake at a cafe | Onigiri picnic |
-| --- | --- | --- |
-| ![Street navigation](examples/momo-japanese-learning/momo-street-navigation.png) | ![Strawberry cake at a cafe](examples/momo-japanese-learning/momo-cafe-strawberry-cake.png) | ![Onigiri picnic](examples/momo-japanese-learning/momo-park-onigiri-picnic.png) |
+<table>
+  <tr>
+    <td width="33%" align="center" valign="top"><img src="examples/momo-japanese-learning/momo-street-navigation.png" alt="Street navigation" width="250"><br>Street navigation</td>
+    <td width="33%" align="center" valign="top"><img src="examples/momo-japanese-learning/momo-cafe-strawberry-cake.png" alt="Strawberry cake at a cafe" width="250"><br>Strawberry cake at a cafe</td>
+    <td width="33%" align="center" valign="top"><img src="examples/momo-japanese-learning/momo-park-onigiri-picnic.png" alt="Onigiri picnic" width="250"><br>Onigiri picnic</td>
+  </tr>
+</table>
 
 ## License
 
